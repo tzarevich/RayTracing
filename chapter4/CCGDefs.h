@@ -11,6 +11,15 @@ namespace CCG
 #define CCGlong long
 #define CCGll long long
 #define CCGuint unsigned int
+#define CCGbool bool
+
+#if !defined(FALSE)
+#define FALSE false
+#endif
+
+#if !defined(TRUE)
+#define TRUE true
+#endif
 
 #define CCGMAX(a, b) ( ((a) > (b)) ? (a) : (b) )
 #define CCGMIN(a, b) ( ((a) > (b)) ? (b) : (a) )
