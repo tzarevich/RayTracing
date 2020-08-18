@@ -1,0 +1,33 @@
+1.先创建要上传的文件夹，然后进入该文件
+  输入：git init
+  进行初始化
+
+2.将要上传的文件拷贝到该文件中
+  输入：git add .
+  .表示文件下的所有目录全部提交，也可以 add filename 添加单独一个文件，然后可以
+  输入：git status
+  查看现在的状态，也就是要上传的文件有哪些，当然也可以不进行这步操作，还可以
+  输入：git commit -m "你对上传文件的描述"
+  对上传文件进行注释
+
+3.连接远程仓库-这步是针对第一次建立连接的情况
+  需要用ssh加密，先看用户目录下有没有.ssh文件，有就跳过这一步，没有则要创建ssh密匙
+  输入：ssh-keygen -t rsa -C "email@address.com"
+  按指示进行操作，然后就会在用户目录下生成.ssh文件，里面有id_rsa和id_rsa.pub这两个文件，分别是私匙和公匙
+
+4.在GitHub上进行设置-这步也是针对第一次建立连接的情况
+  打开Github，进入设置->SSH and GPG keys，添加新的SSH密匙，title随便，key就是将id_rsa.pub文件中的内容
+
+5.在Github上创建一个仓库，可以勾选初始化一个Readme，也可以不勾，建议勾吧
+
+6.本地仓库与Github上的仓库进行关联
+  输入：git remote add origin sshAddress
+  sshAddress就是仓库Clone时SSH上的地址
+
+7.关联好后就可以就本地内容上传了，如果创建仓库时没有勾选初始化一个Readme，那么可以
+  输入：git push -u origin master
+  由于是新建的仓库是空的，所以要加上-u这个参数
+  如果创建仓库时初始化了一个Readme，那么输入上述命令会出错，因为创建的Readme不在本地仓库中，所以要先合并
+  输入：git pull --rebase origin master
+  再输入：git push origin master
+  如果以后再向该仓库上传内容只需要输入：git push origin master就可以了
